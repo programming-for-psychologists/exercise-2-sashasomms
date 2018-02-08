@@ -6,8 +6,8 @@ import random
 from psychopy import visual,event,core,gui
 
 """
-1. Create a fixation cross using a TextStim object visual.
-TextStim set text to "+" and color to "white". 
+1. Create a fixation cross using a TextStim object visual.TextStim 
+set text to "+" and color to "white". 
 Make the fixation cross appear for 500 ms before each name 
 and disappears right before the name comes up.
 """
@@ -25,7 +25,12 @@ for name in names:
 
 win = visual.Window([800,600],color="black", units='pix')
 firstNameStim = visual.TextStim(win,text="", height=40, color="white",pos=[0,0])
+fixationStim = visual.TextStim(win,text="+", height=40, color="white",pos=[0,0])
 while True:
+    fixationStim.draw()
+    win.flip()
+    core.wait(.5)
+    win.flip()
     # random.choice takes a list as an argument
     nameShown = random.choice(firstNames)
     firstNameStim.setText(nameShown)
